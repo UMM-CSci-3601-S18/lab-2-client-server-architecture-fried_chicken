@@ -22,6 +22,7 @@ public class Server {
     UserController userController = buildUserController();
 
     // Configure Spark
+    //Changing stuff
     port(4567);
     // Specify where assets like images will be "stored"
     staticFiles.location("/public");
