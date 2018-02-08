@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * A fake "database" of to-do info
+ * A fake "database" of user info
  *
  * Since we don't want to complicate this lab with a real database,
  * we're going to instead just read a bunch of user data from a
@@ -33,29 +33,28 @@ public class Database {
    * @return the user with the given ID, or null if there is no user
    * with that ID
    */
-
-  /*public To-do getUser(String id) {
+  public Todo getTodo(String id) {
     return Arrays.stream(allTodos).filter(x -> x._id.equals(id)).findFirst().orElse(null);
   }
 
-  *//**
+ /* *//**//**
    * Get an array of all the users satisfying the queries in the params.
    *
    * @param queryParams map of required key-value pairs for the query
    * @return an array of all the users matching the given criteria
-   *//*
-  public To-do[] listUsers(Map<String, String[]> queryParams) {
-    To-do[] filteredTodos = allTodos;
+   *//**//*
+  public User[] listUsers(Map<String, String[]> queryParams) {
+    User[] filteredUsers = allUsers;
 
     // Filter age if defined
     if(queryParams.containsKey("age")) {
-      //int targetAge = Integer.parseInt(queryParams.get("age")[0]);
-      //filteredTodos = filterUsersByAge(filteredTodos, targetAge);
+      int targetAge = Integer.parseInt(queryParams.get("age")[0]);
+      filteredUsers = filterUsersByAge(filteredUsers, targetAge);
     }
     // Process other query parameters here...
 
-    return filteredtodos;
-  }
+    return filteredUsers;
+  }*//*
 
   *//**
    * Get an array of all the users having the target age.
@@ -67,6 +66,7 @@ public class Database {
    *//*
   public User[] filterUsersByAge(User[] users, int targetAge) {
     return Arrays.stream(users).filter(x -> x.age == targetAge).toArray(User[]::new);
-  }*/
+  }
+*/
 
 }
