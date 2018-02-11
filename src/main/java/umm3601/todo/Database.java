@@ -65,11 +65,17 @@ public class Database {
 
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
-
 //     Filter age if defined
+
     if(queryParams.containsKey("status")) {
       Boolean targetStatus = Boolean.valueOf(queryParams.get("status")[0]);
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
+    }
+
+    if(queryParams.containsKey("body")) {
+      String targetString = queryParams.get("body")[0].toLowerCase();
+      filteredTodos = filterTodosByBody(filteredTodos, targetString);
+      System.out.println(filteredTodos.length);
     }
 
     return filteredTodos;
@@ -85,6 +91,18 @@ public class Database {
    */
   public Todo[] filterTodosByStatus(Todo[] todos, Boolean targetStatus) {
     return Arrays.stream(todos).filter(x -> x.status == targetStatus).toArray(Todo[]::new);
+  }
+
+  /**
+   * Get an array of all the users having the target age.
+   *
+   * @param todos the list of users to filter by age
+   * @param targetString the target age to look for
+   * @return an array of all the users from the given list that have
+   * the target age
+   */
+  public Todo[] filterTodosByBody(Todo[] todos, String targetString) {
+    return Arrays.stream(todos).filter(x -> x.body.toLowerCase().contains(targetString.toLowerCase())).toArray(Todo[]::new);
   }
 
 }

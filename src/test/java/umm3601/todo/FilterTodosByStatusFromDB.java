@@ -15,7 +15,7 @@ import static junit.framework.TestCase.assertEquals;
 public class FilterTodosByStatusFromDB {
 
   @Test
-  public void filterUsersByAge() throws IOException {
+  public void filterTodosByStatus() throws IOException {
     Database db = new Database("src/main/data/todos.json");
     Todo[] allTodos = db.listTodos(new HashMap<>());
 
@@ -27,7 +27,7 @@ public class FilterTodosByStatusFromDB {
   }
 
   @Test
-  public void listUsersWithAgeFilter() throws IOException {
+  public void listTodosWithStatusFilter() throws IOException {
     Database db = new Database("src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
 
