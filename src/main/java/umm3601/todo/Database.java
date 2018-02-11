@@ -65,6 +65,7 @@ public class Database {
 
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
+
 //     Filter age if defined
 
     if(queryParams.containsKey("status")) {
@@ -75,7 +76,12 @@ public class Database {
     if(queryParams.containsKey("body")) {
       String targetString = queryParams.get("body")[0].toLowerCase();
       filteredTodos = filterTodosByBody(filteredTodos, targetString);
-      System.out.println(filteredTodos.length);
+    }
+
+    if(queryParams.containsKey("limit")) {
+      String targetLimit = queryParams.get("limit")[0];
+      filteredTodos=filterTodosByLimit(filteredTodos, targetLimit);
+
     }
 
     return filteredTodos;
@@ -104,5 +110,23 @@ public class Database {
   public Todo[] filterTodosByBody(Todo[] todos, String targetString) {
     return Arrays.stream(todos).filter(x -> x.body.toLowerCase().contains(targetString.toLowerCase())).toArray(Todo[]::new);
   }
+
+  /**
+   * Get an array of all the users having the target age.
+   *
+   * @param todos the list of users to filter by age
+   * @param targetLimit the target age to look for
+   * @return an array of all the users from the given list that have
+   * the target age
+   */
+  public Todo[] filterTodosByLimit(Todo[] todos, String targetLimit) {
+    Todo[] limitTodos1 = new Todo[Integer.parseInt(targetLimit)];
+    for(int i = 0; i < Integer.parseInt(targetLimit); i++){
+      limitTodos1[i] = todos[i];
+
+    }
+    return limitTodos1;
+  }
+
 
 }

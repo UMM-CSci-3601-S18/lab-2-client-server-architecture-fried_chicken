@@ -64,4 +64,18 @@ public class TodoController {
     return buildSuccessJsonResponse("todos", gson.toJsonTree(todos));
   }
 
+  /**
+   * Get a JSON response with a list of all the todos in the "database".
+   *
+   * @param req the HTTP request
+   * @param res the HTTP response
+   * @return a success JSON object containing all the users
+   */
+  public JsonObject getLimitTodos(Request req, Response res) {
+    res.type("application/json");
+    String limit = req.params("limit");
+    Todo[] todos = database.listTodos(req.queryMap().toMap());
+    return buildSuccessJsonResponse("todos", gson.toJsonTree(todos));
+  }
+
 }
