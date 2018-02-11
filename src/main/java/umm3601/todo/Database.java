@@ -56,17 +56,24 @@ public class Database {
     return filteredUsers;
   }*//*
 
-  *//**
-   * Get an array of all the users having the target age.
-   *
-   * @param users the list of users to filter by age
-   * @param targetAge the target age to look for
-   * @return an array of all the users from the given list that have
-   * the target age
-   *//*
-  public User[] filterUsersByAge(User[] users, int targetAge) {
-    return Arrays.stream(users).filter(x -> x.age == targetAge).toArray(User[]::new);
+
+
+
+  */
+
+
+
+  public Todo[] listTodos(Map<String, String[]> queryParams) {
+    Todo[] filteredTodos = allTodos;
+
+//     Filter age if defined
+//    if(queryParams.containsKey("age")) {
+//      int targetAge = Integer.parseInt(queryParams.get("age")[0]);
+//      filteredUsers = filterUsersByAge(filteredUsers, targetAge);
+//    }
+//     Process other query parameters here...
+
+    return filteredTodos;
   }
-*/
 
 }
