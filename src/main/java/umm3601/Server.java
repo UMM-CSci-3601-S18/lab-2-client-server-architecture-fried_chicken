@@ -46,6 +46,8 @@ public class Server {
 
     // Get specific to-do
     get("api/todos/:id", todoController::getTodo);
+    // List todos, filtered using query parameters
+    get("api/todos/todos", todoController::getTodos);
 
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays errors like this.
