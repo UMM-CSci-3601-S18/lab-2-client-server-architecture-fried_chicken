@@ -67,13 +67,24 @@ public class Database {
     Todo[] filteredTodos = allTodos;
 
 //     Filter age if defined
-//    if(queryParams.containsKey("age")) {
-//      int targetAge = Integer.parseInt(queryParams.get("age")[0]);
-//      filteredUsers = filterUsersByAge(filteredUsers, targetAge);
-//    }
-//     Process other query parameters here...
+    if(queryParams.containsKey("status")) {
+      Boolean targetStatus = Boolean.valueOf(queryParams.get("status")[0]);
+      filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
+    }
 
     return filteredTodos;
+  }
+
+  /**
+   * Get an array of all the users having the target age.
+   *
+   * @param todos the list of users to filter by age
+   * @param targetStatus the target age to look for
+   * @return an array of all the users from the given list that have
+   * the target age
+   */
+  public Todo[] filterTodosByStatus(Todo[] todos, Boolean targetStatus) {
+    return Arrays.stream(todos).filter(x -> x.status == targetStatus).toArray(Todo[]::new);
   }
 
 }
