@@ -31,7 +31,7 @@ public class FilterTodosByCategoryFromDB {
     Todo[] todos1 = db.listTodos(queryParams);
     assertEquals("Wrong string returned", "video games", todos1[1].category);
 
-    queryParams.put("Category", new String[] {"Video games"});
+    queryParams.put("category", new String[] {"Video games"});
     Todo[] todos2 = db.listTodos(queryParams);
     assertEquals("Incorrect number of Todos with category video games", 71, todos2.length);
 

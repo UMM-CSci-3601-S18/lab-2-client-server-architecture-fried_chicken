@@ -83,9 +83,15 @@ public class Database {
       filteredTodos=filterTodosByLimit(filteredTodos, targetLimit);
 
     }
+
     if(queryParams.containsKey("category")) {
       String targetString = queryParams.get("category")[0].toLowerCase();
       filteredTodos = filterTodosByCategory(filteredTodos, targetString);
+    }
+
+    if(queryParams.containsKey("owner")) {
+      String targetOwner = queryParams.get("owner")[0].toLowerCase();
+      filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
     }
 
     return filteredTodos;
@@ -132,8 +138,28 @@ public class Database {
     return limitTodos1;
   }
 
+  /**
+   * Get an array of all the users having the target age.
+   *
+   * @param todos the list of users to filter by age
+   * @param targetString the target age to look for
+   * @return an array of all the users from the given list that have
+   * the target age
+   */
   public Todo[] filterTodosByCategory(Todo[] todos, String targetString) {
     return Arrays.stream(todos).filter(x -> x.category.toLowerCase().contains(targetString.toLowerCase())).toArray(Todo[]::new);
+  }
+
+  /**
+   * Get an array of all the users having the target age.
+   *
+   * @param todos the list of users to filter by age
+   * @param targetOwner the target age to look for
+   * @return an array of all the users from the given list that have
+   * the target age
+   */
+  public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
+    return Arrays.stream(todos).filter(x -> x.owner.toLowerCase().contains(targetOwner.toLowerCase())).toArray(Todo[]::new);
   }
 
 
