@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Collections;
 
 /**
  * A fake "database" of user info
@@ -94,6 +96,12 @@ public class Database {
       filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
     }
 
+    if(queryParams.containsKey("orderBy")) {
+      String fieldToOrder = queryParams.get("orderBy")[0];
+
+    }
+
+
     return filteredTodos;
   }
 
@@ -160,6 +168,23 @@ public class Database {
    */
   public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
     return Arrays.stream(todos).filter(x -> x.owner.toLowerCase().contains(targetOwner.toLowerCase())).toArray(Todo[]::new);
+  }
+
+  /**
+   * Get an array of all the users having the target age.
+   *
+   * @param todos the list of users to filter by age
+   * @param fieldToOrder the target age to look for
+   * @return an array of all the users from the given list that have
+   * the target age
+   */
+  public Todo[] orderTodosByField(Todo[] todos, String fieldToOrder) {
+    Todo[] filteredTodo;
+    if(fieldToOrder.compareTo("owner") == 0){
+     Arrays.sort(todos, new TodoOwnerComparator());
+
+    }
+    return todos;
   }
 
 
