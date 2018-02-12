@@ -83,6 +83,10 @@ public class Database {
       filteredTodos=filterTodosByLimit(filteredTodos, targetLimit);
 
     }
+    if(queryParams.containsKey("category")) {
+      String targetString = queryParams.get("category")[0].toLowerCase();
+      filteredTodos = filterTodosByCategory(filteredTodos, targetString);
+    }
 
     return filteredTodos;
   }
@@ -126,6 +130,10 @@ public class Database {
 
     }
     return limitTodos1;
+  }
+
+  public Todo[] filterTodosByCategory(Todo[] todos, String targetString) {
+    return Arrays.stream(todos).filter(x -> x.category.toLowerCase().contains(targetString.toLowerCase())).toArray(Todo[]::new);
   }
 
 
