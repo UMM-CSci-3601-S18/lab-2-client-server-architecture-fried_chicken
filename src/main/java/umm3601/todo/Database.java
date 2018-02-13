@@ -34,7 +34,7 @@ public class Database {
    * with that ID
    */
   public Todo getTodo(String id) {
-    System.out.println(id);
+    System.out.println(id + "here2");
     return Arrays.stream(allTodos).filter(x -> x._id.equals(id)).findFirst().orElse(null);
   }
 

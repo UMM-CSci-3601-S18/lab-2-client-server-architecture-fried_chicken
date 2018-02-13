@@ -61,6 +61,7 @@ public class TodoController {
   public JsonObject getTodos(Request req, Response res) {
     res.type("application/json");
     Todo[] todos = database.listTodos(req.queryMap().toMap());
+    System.out.println(todos[0].category + " here");
     return buildSuccessJsonResponse("todos", gson.toJsonTree(todos));
   }
 

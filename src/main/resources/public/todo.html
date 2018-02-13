@@ -16,6 +16,9 @@
 id: <input id="id" type= "text" name="id">
 <button type="button" id="getTodosById"> get todos by id </button>
 
+category: <input id="category" type= "text" name="category">
+<button type="button" id="getTodosByCategory"> get todos by category </button>
+
 <script>
   window.onload = function() {
     console.log("The page is loaded now!");
@@ -25,6 +28,9 @@ id: <input id="id" type= "text" name="id">
 
     element = document.getElementById('getTodosById');
     element.addEventListener("click", getAllTodosById, true);
+
+    element = document.getElementById('getTodosByCategory');
+    element.addEventListener("click", getAllTodosByCategory, true);
   }
 </script>
 </body>
