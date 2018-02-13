@@ -94,7 +94,7 @@ public class Server {
 
   /***
    * Create a database using the json fie, use it as
-   * data source for a new UserController
+   * data source for a new TodoController
    *
    * Constructing the controller might throw an IOException if
    * there are problems reading from the JSON "database" file.

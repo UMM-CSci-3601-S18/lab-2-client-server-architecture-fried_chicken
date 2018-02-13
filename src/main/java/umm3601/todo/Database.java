@@ -8,12 +8,12 @@ import java.util.Map;
 
 
 /**
- * A fake "database" of user info
+ * A fake "to-do" of to-do info
  *
  * Since we don't want to complicate this lab with a real database,
- * we're going to instead just read a bunch of user data from a
+ * we're going to instead just read a bunch of to-do data from a
  * specified JSON file, and then provide various database-like
- * methods that allow the `UserController` to "query" the "database".
+ * methods that allow the `TodoController` to "query" the "database".
  */
 public class Database {
 
@@ -26,11 +26,11 @@ public class Database {
   }
 
   /**
-   * Get the single user specified by the given ID. Return
-   * `null` if there is no user with that ID.
+   * Get the single to-do specified by the given ID. Return
+   * `null` if there is no to-do with that ID.
    *
-   * @param id the ID of the desired user
-   * @return the user with the given ID, or null if there is no user
+   * @param id the ID of the desired to-do
+   * @return the to-do with the given ID, or null if there is no to-do
    * with that ID
    */
   public Todo getTodo(String id) {
@@ -38,36 +38,19 @@ public class Database {
     return Arrays.stream(allTodos).filter(x -> x._id.equals(id)).findFirst().orElse(null);
   }
 
- /* *//**//**
-   * Get an array of all the users satisfying the queries in the params.
+  /**
+   * Get the single to-do specified by the given ID. Return
+   * `null` if there is no to-do with that ID.
    *
-   * @param queryParams map of required key-value pairs for the query
-   * @return an array of all the users matching the given criteria
-   *//**//*
-  public User[] listUsers(Map<String, String[]> queryParams) {
-    User[] filteredUsers = allUsers;
+   * @param  queryParams for various inputs in html form fields
+   * @return the disired array of to-dos
 
-    // Filter age if defined
-    if(queryParams.containsKey("age")) {
-      int targetAge = Integer.parseInt(queryParams.get("age")[0]);
-      filteredUsers = filterUsersByAge(filteredUsers, targetAge);
-    }
-    // Process other query parameters here...
-
-    return filteredUsers;
-  }*//*
-
-
-
-
-  */
-
-
+   */
 
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
 
-    System.out.println("here");
+
 
     if(queryParams.containsKey("status")) {
       Boolean targetStatus = Boolean.valueOf(queryParams.get("status")[0]);
@@ -107,36 +90,36 @@ public class Database {
   }
 
   /**
-   * Get an array of all the users having the target age.
+   * Get an array of all the todos having the target status.
    *
-   * @param todos the list of users to filter by age
-   * @param targetStatus the target age to look for
-   * @return an array of all the users from the given list that have
-   * the target age
+   * @param todos the list of to-dos to filter by status
+   * @param targetStatus the target status to look for
+   * @return an array of all the to-dos from the given list that have
+   * the target to-dos
    */
   public Todo[] filterTodosByStatus(Todo[] todos, Boolean targetStatus) {
     return Arrays.stream(todos).filter(x -> x.status == targetStatus).toArray(Todo[]::new);
   }
 
   /**
-   * Get an array of all the users having the target age.
+   * Get an array of all the to-dos having the target body.
    *
-   * @param todos the list of users to filter by age
-   * @param targetString the target age to look for
-   * @return an array of all the users from the given list that have
-   * the target age
+   * @param todos the list of todos to filter by age
+   * @param targetString the target body to look for
+   * @return an array of all the to-dos from the given list that have
+   * the target to-dos
    */
   public Todo[] filterTodosByBody(Todo[] todos, String targetString) {
     return Arrays.stream(todos).filter(x -> x.body.toLowerCase().contains(targetString.toLowerCase())).toArray(Todo[]::new);
   }
 
   /**
-   * Get an array of all the users having the target age.
+   * Get an array of all to-dos the  having the target limit.
    *
-   * @param todos the list of users to filter by age
-   * @param targetLimit the target age to look for
-   * @return an array of all the users from the given list that have
-   * the target age
+   * @param todos the list of to-dos to filter by limit
+   * @param targetLimit the target limit to look for
+   * @return an array of all the todos from the given list that have
+   * the limit of to-dos
    */
   public Todo[] filterTodosByLimit(Todo[] todos, String targetLimit) {
     Todo[] limitTodos1 = new Todo[Integer.parseInt(targetLimit)];
@@ -148,23 +131,23 @@ public class Database {
   }
 
   /**
-   * Get an array of all the users having the target age.
+   * Get an array of all the to-dos having the target category.
    *
-   * @param todos the list of users to filter by age
-   * @param targetString the target age to look for
-   * @return an array of all the users from the given list that have
-   * the target age
+   * @param todos list of todos to filter by category
+   * @param targetString the target category to filter by
+   * @return an array of all the to-dos from the given list that have been filtered
+   *
    */
   public Todo[] filterTodosByCategory(Todo[] todos, String targetString) {
     return Arrays.stream(todos).filter(x -> x.category.toLowerCase().contains(targetString.toLowerCase())).toArray(Todo[]::new);
   }
 
   /**
-   * Get an array of all the users having the target age.
+   * Get an array of all the todos having the target age.
    *
-   * @param todos the list of users to filter by age
+   * @param todos the list of todos to filter by age
    * @param targetOwner the target age to look for
-   * @return an array of all the users from the given list that have
+   * @return an array of all the todos from the given list that have
    * the target age
    */
   public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
@@ -172,11 +155,11 @@ public class Database {
   }
 
   /**
-   * Get an array of all the users having the target age.
+   * Get an array of all the todos having the target age.
    *
-   * @param todos the list of users to filter by age
+   * @param todos the list of todos to filter by age
    * @param fieldToOrder the target age to look for
-   * @return an array of all the users from the given list that have
+   * @return an array of all the todos from the given list that have
    * the target age
    */
   public Todo[] orderTodosByField(Todo[] todos, String fieldToOrder) {

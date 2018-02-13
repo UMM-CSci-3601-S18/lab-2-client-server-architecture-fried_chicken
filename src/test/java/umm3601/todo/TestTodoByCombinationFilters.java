@@ -24,7 +24,7 @@ public class TestTodoByCombinationFilters {
 
     for (int i=0; i < todos.length; i++) {
       assertEquals("Incorrect number of todos with category owner", "Blanche", todos[i].owner);
-      assertEquals("Incorrect number of todos with category owner", 0, todos[i].status.compareTo(todos[i].status));
+      assertEquals("Elements do not equal for status filter", 0, todos[i].status.compareTo(todos[i].status));
 
     }
 
@@ -41,10 +41,10 @@ public class TestTodoByCombinationFilters {
 
     for (int i = 0; i < todos1.length; i++) {
 
-      assertEquals("Wrong string returned", "Blanche", todos1[i].owner);
-      assertEquals("Wrong string returned", 0, todos1[i].status.compareTo(true));
+      assertEquals("Wrong string", "Blanche", todos1[i].owner);
+      assertEquals("Wrong status", 0, todos1[i].status.compareTo(true));
     }
-    assertEquals("Wrong size returned", 2, todos1.length);
+    assertEquals("Wrong size returned", 3, todos1.length);
 
   }
 }

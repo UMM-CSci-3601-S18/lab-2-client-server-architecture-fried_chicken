@@ -29,7 +29,7 @@ public class SortTodosAlphabeticallyByCategoryFromDB {
     Todo[] Todos = db.orderTodosByField(arr1, "category");
 
     for(int i = 0; i < 3; i++){
-      assertEquals("They don't equal", 0, arr1[i].category.compareTo(arr2[i].category));
+      assertEquals("Not sorted", 0, arr1[i].category.compareTo(arr2[i].category));
     }
   }
 
@@ -43,7 +43,7 @@ public class SortTodosAlphabeticallyByCategoryFromDB {
     Todo[] todos2 = db.orderTodosByField(todos1, "category");
     System.out.println();
     for(int i =0; i < todos1.length-1; i++) {
-      assertEquals("Incorrect number of todos with enim", true, todos2[i].category.compareTo(todos2[i+1].category) <= 0);
+      assertEquals("Not sorted", true, todos2[i].category.compareTo(todos2[i+1].category) <= 0);
     }
 
   }

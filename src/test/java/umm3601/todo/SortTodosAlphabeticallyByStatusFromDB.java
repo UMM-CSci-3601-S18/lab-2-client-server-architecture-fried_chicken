@@ -29,7 +29,7 @@ public class SortTodosAlphabeticallyByStatusFromDB {
     Todo[] Todos = db.orderTodosByField(arr1, "status");
 
     for(int i = 0; i < 3; i++){
-      assertEquals("They don't equal", 0, arr1[i].status.compareTo(arr2[i].status));
+      assertEquals("Not sorted", 0, arr1[i].status.compareTo(arr2[i].status));
     }
   }
 
@@ -41,9 +41,8 @@ public class SortTodosAlphabeticallyByStatusFromDB {
     queryParams.put("orderBy", new String[] {"status"});
     Todo[] todos1 = db.listTodos(queryParams);
     Todo[] todos2 = db.orderTodosByField(todos1, "status");
-    System.out.println();
     for(int i =0; i < todos1.length-1; i++) {
-      assertEquals("Incorrect number of todos with enim", true, todos2[i].status.compareTo(todos2[i+1].status) <= 0);
+      assertEquals("Not sorted", true, todos2[i].status.compareTo(todos2[i+1].status) <= 0);
     }
 
   }

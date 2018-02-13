@@ -29,7 +29,7 @@ public class SortTodosAlphabeticallyByOwnerFromDB {
     Todo[] Todos = db.orderTodosByField(arr1, "owner");
 
     for(int i = 0; i < 3; i++){
-      assertEquals("They don't equal", 0, arr1[i].owner.compareTo(arr2[i].owner));
+      assertEquals("Not sorted", 0, arr1[i].owner.compareTo(arr2[i].owner));
     }
   }
 
@@ -41,9 +41,8 @@ public class SortTodosAlphabeticallyByOwnerFromDB {
     queryParams.put("orderBy", new String[] {"owner"});
     Todo[] todos1 = db.listTodos(queryParams);
     Todo[] todos2 = db.orderTodosByField(todos1, "owner");
-    System.out.println();
     for(int i =0; i < todos1.length-1; i++) {
-    assertEquals("Incorrect number of todos with enim", true, todos2[i].owner.compareTo(todos2[i+1].owner) <= 0);
+    assertEquals("Not sorted", true, todos2[i].owner.compareTo(todos2[i+1].owner) <= 0);
     }
 
   }

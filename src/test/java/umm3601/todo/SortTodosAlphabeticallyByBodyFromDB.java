@@ -29,7 +29,7 @@ public class SortTodosAlphabeticallyByBodyFromDB {
     Todo[] Todos = db.orderTodosByField(arr1, "body");
 
     for(int i = 0; i < 3; i++){
-      assertEquals("They don't equal", 0, arr1[i].body.compareTo(arr2[i].body));
+      assertEquals("Not sorted", 0, arr1[i].body.compareTo(arr2[i].body));
     }
   }
 
@@ -43,7 +43,7 @@ public class SortTodosAlphabeticallyByBodyFromDB {
     Todo[] todos2 = db.orderTodosByField(todos1, "body");
     System.out.println();
     for(int i =0; i < todos1.length-1; i++) {
-      assertEquals("Incorrect number of todos with enim", true, todos2[i].body.compareTo(todos2[i+1].body) <= 0);
+      assertEquals("Not sorted", true, todos2[i].body.compareTo(todos2[i+1].body) <= 0);
     }
 
   }

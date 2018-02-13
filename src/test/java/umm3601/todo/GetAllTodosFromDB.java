@@ -7,6 +7,7 @@ import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 
 public class GetAllTodosFromDB {
+  //tests for getting all-todos
 
   @Test
   public void totalUserCount() throws IOException {
