@@ -184,6 +184,22 @@ public class Database {
      Arrays.sort(todos, new TodoOwnerComparator());
 
     }
+
+    if(fieldToOrder.compareTo("category") == 0){
+      Arrays.sort(todos, new TodoCategoryComparator());
+
+    }
+
+    if(fieldToOrder.compareTo("status") == 0){
+      Arrays.sort(todos, new TodoStatusComparator());
+
+    }
+
+    if(fieldToOrder.compareTo("body") == 0){
+      Arrays.sort(todos, new TodoBodyComparator());
+
+    }
+
     return todos;
   }
 

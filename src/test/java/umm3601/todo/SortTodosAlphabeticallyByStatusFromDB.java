@@ -3,19 +3,16 @@ package umm3601.todo;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
 
-public class SortTodosAlphabeticallyByFieldFromDB {
+public class SortTodosAlphabeticallyByStatusFromDB {
 
   @Test
-  public void filterTodosByOwner() throws IOException {
+  public void filterTodosByStatus() throws IOException {
     Database db = new Database("src/main/data/todos.json");
     Todo[] allTodos = db.listTodos(new HashMap<>());
 
@@ -25,28 +22,28 @@ public class SortTodosAlphabeticallyByFieldFromDB {
     arr1[2] = new Todo("9119111913", "AndyLau",false,"not slim with glasses", "lazyner");
 
     Todo[] arr2 = new Todo[3];
-    arr2[1] = new Todo("9119111911", "KyleFoss",false,"slim with glasses", "student");
+    arr2[0] = new Todo("9119111911", "KyleFoss",false,"slim with glasses", "student");
     arr2[2] = new Todo("9119111912", "RochSexy",true,"in shape", "Chef");
-    arr2[0] = new Todo("9119111913", "AndyLau",false,"not slim with glasses", "lazyner");
+    arr2[1] = new Todo("9119111913", "AndyLau",false,"not slim with glasses", "lazyner");
 
-    Todo[] Todos = db.orderTodosByField(arr1, "owner");
+    Todo[] Todos = db.orderTodosByField(arr1, "status");
 
-    for(int i = 0; i < 1; i++){
-      assertEquals("They don't equal", 0, arr1[i].owner.compareTo(arr2[i].owner));
+    for(int i = 0; i < 3; i++){
+      assertEquals("They don't equal", 0, arr1[i].status.compareTo(arr2[i].status));
     }
   }
 
   @Test
-  public void listTodosWithByOwnerSorted() throws IOException {
+  public void listTodosWithByStatusSorted() throws IOException {
     Database db = new Database("src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
 
-    queryParams.put("orderBy", new String[] {"owner"});
+    queryParams.put("orderBy", new String[] {"status"});
     Todo[] todos1 = db.listTodos(queryParams);
-    Todo[] todos2 = db.orderTodosByField(todos1, "owner");
+    Todo[] todos2 = db.orderTodosByField(todos1, "status");
     System.out.println();
     for(int i =0; i < todos1.length-1; i++) {
-    assertEquals("Incorrect number of todos with enim", true, todos2[i].owner.compareTo(todos2[i+1].owner) <= 0);
+      assertEquals("Incorrect number of todos with enim", true, todos2[i].status.compareTo(todos2[i+1].status) <= 0);
     }
 
   }
