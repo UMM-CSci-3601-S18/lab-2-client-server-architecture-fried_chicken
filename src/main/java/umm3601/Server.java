@@ -36,6 +36,7 @@ public class Server {
     // Redirects to create simpler URLs
     redirect.get("/about", "/about.html");
     redirect.get("/users", "/users.html");
+    redirect.get("/todos", "/todo.html");
 
     // API endpoints
 
@@ -47,7 +48,7 @@ public class Server {
     // Get specific to-do
     get("api/todos/:id", todoController::getTodo);
     // List todos, filtered using query parameters
-    get("api/todos/todos", todoController::getTodos);
+    get("api/todos", todoController::getTodos);
 
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays errors like this.
