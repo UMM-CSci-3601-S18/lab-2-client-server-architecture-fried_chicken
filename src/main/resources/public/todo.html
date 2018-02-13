@@ -15,15 +15,49 @@
 
 id: <input id="id" type= "text" name="id">
 <button type="button" id="getTodosById"> get todos by id </button>
-
+<br>
 category: <input id="category" type= "text" name="category">
 <button type="button" id="getTodosByCategory"> get todos by category </button>
-
+<br>
 status: <input id="status" type= "text" name="status">
 <button type="button" id="getTodosByStatus"> get todos by status </button>
-
+<br>
 body: <input id="body" type= "text" name="body">
 <button type="button" id="getTodosByBody"> get todos by body </button>
+<br>
+limit: <input id="limit" type= "number" name="limit">
+<button type="button" id="getTodosByLimit"> get todos by limit </button>
+<br>
+orderBy: <input id="orderBy" type= "text" name="orderBy">
+<button type="button" id="getTodosByOrderBy"> get todos by orderBy </button>
+<br><br>
+
+<h1> Choose multiple options</h1>
+
+<form action="/api/todos">
+  id:<br>
+  <input type="text" name="id">
+  <br>
+  owner:<br>
+  <input type="text" name="owner">
+  <br>
+  status:<br>
+  <input type="text" name="status">
+  <br>
+  category:<br>
+  <input type="text" name="category">
+  <br>
+  body:<br>
+  <input type="text" name="body">
+  <br>
+  limit:<br>
+  <input type="text" name="limit">
+  <br>
+  orderBy:<br>
+  <input type="text" name="orderBy">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
 
 <script>
   window.onload = function() {
@@ -43,6 +77,12 @@ body: <input id="body" type= "text" name="body">
 
     element = document.getElementById('getTodosByBody');
     element.addEventListener("click", getAllTodosByBody, true);
+
+    element = document.getElementById('getTodosByLimit');
+    element.addEventListener("click", getAllTodosByLimit, true);
+
+    element = document.getElementById('getTodosByOrderBy');
+    element.addEventListener("click", getAllTodosByOrderBy, true);
   }
 </script>
 </body>

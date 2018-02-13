@@ -61,7 +61,7 @@ public class TodoController {
   public JsonObject getTodos(Request req, Response res) {
     res.type("application/json");
     Todo[] todos = database.listTodos(req.queryMap().toMap());
-    String stuff = req.params("category");
+   // String stuff = req.params("category");
     return buildSuccessJsonResponse("todos", gson.toJsonTree(todos));
 
   }
@@ -75,7 +75,7 @@ public class TodoController {
    */
   public JsonObject getLimitTodos(Request req, Response res) {
     res.type("application/json");
-    String limit = req.params("limit");
+    //String limit = req.params("limit");
     Todo[] todos = database.listTodos(req.queryMap().toMap());
     return buildSuccessJsonResponse("todos", gson.toJsonTree(todos));
   }

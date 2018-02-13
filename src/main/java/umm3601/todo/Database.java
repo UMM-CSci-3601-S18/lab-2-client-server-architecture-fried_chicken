@@ -67,6 +67,8 @@ public class Database {
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
 
+    System.out.println("here");
+
     if(queryParams.containsKey("status")) {
       Boolean targetStatus = Boolean.valueOf(queryParams.get("status")[0]);
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
@@ -75,12 +77,6 @@ public class Database {
     if(queryParams.containsKey("body")) {
       String targetString = queryParams.get("body")[0].toLowerCase();
       filteredTodos = filterTodosByBody(filteredTodos, targetString);
-    }
-
-    if(queryParams.containsKey("limit")) {
-      String targetLimit = queryParams.get("limit")[0];
-      filteredTodos=filterTodosByLimit(filteredTodos, targetLimit);
-
     }
 
     if(queryParams.containsKey("category")) {
@@ -93,8 +89,16 @@ public class Database {
       filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
     }
 
+    if(queryParams.containsKey("limit")) {
+      String targetLimit = queryParams.get("limit")[0];
+      if(targetLimit.compareTo("") != 0) {
+        filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
+      }
+
+    }
     if(queryParams.containsKey("orderBy")) {
       String fieldToOrder = queryParams.get("orderBy")[0];
+      filteredTodos=orderTodosByField(filteredTodos, fieldToOrder);
 
     }
 
