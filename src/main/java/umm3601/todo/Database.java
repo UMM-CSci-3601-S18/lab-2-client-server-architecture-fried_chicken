@@ -67,8 +67,6 @@ public class Database {
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
 
-//     Filter age if defined
-
     if(queryParams.containsKey("status")) {
       Boolean targetStatus = Boolean.valueOf(queryParams.get("status")[0]);
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);

@@ -18,18 +18,44 @@ function getAllTodosById() {
   console.log("Getting all the todos by the specified id.");
   console.log(document.getElementById("id").value);
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todos/" +  document.getElementById("id").value, function(returned_json){
-    document.getElementById('jsonDump').innerHTML = returned_json;
-  });
+  if(document.getElementById("id").value != "") {
+    HttpThingy.get("/api/todos/" + document.getElementById("id").value, function (returned_json) {
+      document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+  }
 }
 
 function getAllTodosByCategory() {
   console.log("Getting all the todos by the specified category.");
   console.log(document.getElementById("category").value);
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todos?category=" +  document.getElementById("category").value, function(returned_json){
-    document.getElementById('jsonDump').innerHTML = returned_json;
-  });
+  if(document.getElementById("category").value != "") {
+    HttpThingy.get("/api/todos?category=" + document.getElementById("category").value, function (returned_json) {
+      document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+  }
+}
+
+function getAllTodosByStatus() {
+  console.log("Getting all the todos by the specified status.");
+  console.log(document.getElementById("status").value);
+  var HttpThingy = new HttpClient();
+  if(document.getElementById("status").value != "") {
+    HttpThingy.get("/api/todos?status=" + document.getElementById("status").value, function (returned_json) {
+      document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+  }
+}
+
+function getAllTodosByBody() {
+  console.log("Getting all the todos by the specified body.");
+  console.log(document.getElementById("body").value);
+  var HttpThingy = new HttpClient();
+  if(document.getElementById("body").value != "") {
+    HttpThingy.get("/api/todos?body=" + document.getElementById("body").value, function (returned_json) {
+      document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+  }
 }
 
 /**
